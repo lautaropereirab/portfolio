@@ -1,194 +1,314 @@
-<!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>LPB - Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lautaro Pereira Basile - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #F9FAFB;
+      color: #111827;
+    }
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      z-index: 1000;
+    }
+    header .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #2563EB;
+      text-decoration: none;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 1.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #111827;
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: #2563EB;
+    }
 
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">Projects</a></li>
-							<li><a href="#two">What I do</a></li>
-							<li><a href="#three">Get in touch</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .btn-primary {
+      background: #2563EB;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover {
+      background: #1e4fcc;
+    }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    /* Projects */
+    .projects {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .projects h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-content h3 {
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+    }
+    .card-content p {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+    .card-content a {
+      align-self: flex-start;
+    }
 
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Lautaro Pereira Basile</h1>
-							<p>Economist & Data Analyst based in Buenos Aires</p>
-							<!-- <ul class="actions">
-								<li><a href="#one" class="button scrolly">Learn more</a></li>
-							</ul> -->
-						</div>
-					</section>
+    /* About */
+    .about {
+      background: #fff;
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-radius: 16px;
+    }
+    .about h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .feature {
+      text-align: center;
+    }
+    .feature h3 {
+      font-weight: 700;
+      margin-top: 1rem;
+    }
 
-				<!-- One -->
-				<section id="one" class="wrapper style2 spotlights">
-					<section>
-						<a href="Proyect_1.html" class="image"><img src="images/pic01.svg" alt="" data-position="center center" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Proyect #1: Web Scrapper</h2>
-								<p>Made a web scrapper that obtains data from a supermarket</p>
-								<ul class="actions">
-									<li><a href="Proyect_1.html" class="button">More</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-					<section>
-						<a href="#" class="image"><img src="images/pic02.svg" alt="" data-position="top center" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Proyect #2: Data Visualization</h2>
-								<p>Using shopping sales dataset to perform key visualizations</p>
-								<ul class="actions">
-									<li><a href="Proyect_2.html" class="button">More</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-				</section>
-					<section>
-						<a href="#" class="image"><img src="images/pic02.svg" alt="" data-position="top center" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Proyect #3: Dashboards</h2>
-								<p>Fintech Credit Area KPI Dashboard</p>
-								<ul class="actions">
-									<li><a href="Proyect_3.html" class="button">More</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-				</section>
-				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>What I do</h2>
-							<p>Economist and Data Analyst with consulting and fintech experience. I thrive on solving complex problems and delivering impactful solutions through data analysis and clear, actionable visualizations in dynamic, results-oriented environments.</p>
-							<div class="features">
-								<section>
-									<img src="images/data-driven.svg" alt="Data Insights" style="width:64px; height:64px;">
-									<h3>Data-Driven Insights</h3>
-									<p>Transforming raw data into actionable insights that drive decision-making and business growth.</p>
-								</section>
-								<section>
-									<img src="images/solutions.svg" alt="Tailored Solutions" style="width:64px; height:64px;">
-									<h3>Tailored Solutions</h3>
-									<p>Crafting customized analytical solutions to tackle unique challenges with precision and impact.</p>
-								</section>
-								<section>
-									<img src="images/dashboard.svg" alt="Visual Storytelling" style="width:64px; height:64px;">
-									<h3>Visual Storytelling</h3>
-									<p>Creating clear, engaging visualizations that turn complex data into compelling narratives.</p>
-								</section>
-								<section>
-									<img src="images/learning.svg" alt="Continuous learning" style="width:64px; height:64px;">
-									<h3>Continuous learning</h3>
-									<p>Embracing new tools and methodologies to stay ahead in fast-paced, data-driven industries.</p>
-								</section>
-							</div>
-						</div>
-					</section>
+    /* Contact */
+    .contact {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact form {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    button {
+      background: #2563EB;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #1e4fcc;
+    }
+    .social {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .social a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: #2563EB;
+    }
 
-				<!-- Three -->
-					<section id="three" class="wrapper style1 fade-up">
-						<div class="inner">
-							<h2>Get in touch</h2>
-							<p>Let’s connect! I’d love to hear from you—whether it’s a question, collaboration, or just a hello!</p>
-							<div class="split style1">
-								<section>
-									<form method="post" action="https://formspree.io/f/mbljegpq">
-										<div class="fields">
-											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" required />
-											</div>
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" required/>
-											</div>
-											<div class="field">
-												<label for="message">Message</label>
-												<textarea name="message" id="message" rows="5" required></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><button type="submit" class="button submit">Send Message</button></li>
-										</ul>
-									</form>
-								</section>
-								<section>
-									<ul class="contact">
-										<!-- <li>
-											<h3>Address</h3>
-											<span>12345 Somewhere Road #654<br />
-											Nashville, TN 00000-0000<br />
-											USA</span>
-										</li>
-										<li>
-											<h3>Email</h3>
-											<a href="#">user@untitled.tld</a>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<span>(000) 000-0000</span>
-										</li>
-										<li> -->
-											<h3>Social</h3>
-											<ul class="icons">
-												<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
-												<!-- <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
-												<li><a href="https://www.linkedin.com/in/lautaropereirab/" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="https://github.com/lautaropereirab" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-											</ul>
-										</li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</section>
-			</div>
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <a href="#" class="logo">LPB</a>
+    <nav>
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Pincopan. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Lautaro Pereira Basile</h1>
+    <p>Economist & Data Analyst</p>
+    <a href="#projects" class="btn-primary">View my work</a>
+  </section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images/pic01.svg" alt="Web Scraper">
+        <div class="card-content">
+          <h3>Web Scraper</h3>
+          <p>Tool to collect and analyze supermarket product data.</p>
+          <a href="Proyect_1.html" class="btn-primary">View Case Study</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/pic02.svg" alt="Data Visualization">
+        <div class="card-content">
+          <h3>Data Visualization</h3>
+          <p>Interactive dashboards and visual analysis for sales data.</p>
+          <a href="Proyect_2.html" class="btn-primary">View Case Study</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/pic03.svg" alt="Dashboards">
+        <div class="card-content">
+          <h3>Dashboards</h3>
+          <p>Fintech Credit Area KPI Dashboard for decision making.</p>
+          <a href="Proyect_3.html" class="btn-primary">View Case Study</a>
+        </div>
+      </div>
+      <!-- Placeholder projects -->
+      <div class="card">
+        <img src="images/placeholder.svg" alt="Coming Soon">
+        <div class="card-content">
+          <h3>Coming Soon</h3>
+          <p>Placeholder for future projects.</p>
+          <a href="#" class="btn-primary">View Case Study</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	</body>
+  <!-- About -->
+  <section id="about" class="about">
+    <h2>What I do</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Data-Driven Insights</h3>
+        <p>Transform raw data into actionable insights.</p>
+      </div>
+      <div class="feature">
+        <h3>Tailored Solutions</h3>
+        <p>Custom analytics for unique business challenges.</p>
+      </div>
+      <div class="feature">
+        <h3>Visual Storytelling</h3>
+        <p>Clear, engaging dashboards and reports.</p>
+      </div>
+      <div class="feature">
+        <h3>Continuous Learning</h3>
+        <p>Adapting new tools to stay ahead in data-driven industries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Get in touch</h2>
+    <p>Let’s connect! Whether it’s a question, collaboration, or just a hello!</p>
+    <form method="post" action="https://formspree.io/f/mbljegpq">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <textarea name="message" rows="5" placeholder="Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="social">
+      <a href="https://github.com/lautaropereirab" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/lautaropereirab/" target="_blank">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Lautaro Pereira Basile. All rights reserved.</p>
+  </footer>
+</body>
 </html>
