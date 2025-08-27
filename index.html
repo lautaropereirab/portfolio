@@ -5,225 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lautaro Pereira Basile - Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #F9FAFB;
-      color: #ffffff;
+    :root{
+      --bg:#F9FAFB;
+      --fg:#111827;
+      --card:#FFFFFF;
+      --primary:#2563EB;
+      --primary-600:#1e4fcc;
+      --shadow:0 4px 16px rgba(0,0,0,.08);
+      --radius:16px;
     }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg)}
+    a{text-decoration:none;color:inherit}
+
     /* Navbar */
-    header {
-      position: sticky;
-      top: 0;
-      background: #ffffffbb;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      z-index: 1000;
+    header{
+      position:sticky;top:0;background:#fff;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem;box-shadow:0 2px 8px rgba(0,0,0,.05);z-index:1000
     }
-    header .logo {
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: #2563EB;
-      text-decoration: none;
+    .logo{font-weight:800;font-size:1.2rem;color:var(--primary)}
+    nav ul{display:flex;list-style:none;margin:0;padding:0;gap:1.5rem}
+    nav a{font-weight:600}
+    nav a:hover{color:var(--primary)}
+
+    /* HERO = Name + What I do (arriba de todo) */
+    .hero{
+      max-width:1200px;margin:0 auto;padding:3.5rem 2rem 2rem;
+      display:grid;grid-template-columns:1.1fr 1.4fr;gap:3rem;align-items:center
     }
-    nav ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: 1.5rem;
+    @media (max-width: 920px){ .hero{grid-template-columns:1fr;gap:2rem} }
+    .hero-title h1{font-size:3rem;line-height:1.1;margin:.25rem 0;font-weight:800;color:var(--fg)}
+    .hero-title p.role{font-size:1.25rem;margin:.25rem 0 1.25rem;font-weight:600;color:var(--fg)}
+    .cta{display:flex;gap:.75rem;flex-wrap:wrap}
+    .btn-primary,.btn-outline{
+      padding:.75rem 1.25rem;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;gap:.5rem
     }
-    nav a {
-      text-decoration: none;
-      color: #111827;
-      font-weight: 600;
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-primary:hover{background:var(--primary-600)}
+    .btn-outline{border:1px solid #D1D5DB;color:var(--fg);background:#fff}
+    .btn-outline:hover{border-color:#9CA3AF}
+
+    .hero-whatido{
+      background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:1.75rem
     }
-    nav a:hover {
-      color: #2563EB;
+    .hero-whatido h2{margin:0 0 .75rem;font-size:1.125rem;letter-spacing:.02em;color:#374151;font-weight:700;text-transform:uppercase}
+    .hero-whatido p{margin:.5rem 0 0;line-height:1.7;font-size:1.05rem;color:#1F2937}
+    .hero-whatido .skills{
+      margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem
+    }
+    .chip{
+      padding:.4rem .65rem;border-radius:999px;background:#F3F4F6;border:1px solid #E5E7EB;font-size:.9rem;color:#374151
     }
 
-    /* Hero */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-	  color: #111827;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-	  color: #111827;
-    }
-    .btn-primary {
-      background: #2563EB;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-    .btn-primary:hover {
-      background: #1e4fcc;
-    }
+    /* Sections */
+    .section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
+    .section h2{text-align:center;font-size:2rem;font-weight:800;margin-bottom:2rem}
 
     /* Projects */
-    .projects {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .projects h2 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-    }
-	.projects h3 {
-		color: #111827;
-	}
-	.projects p {
-		color: #000000;
-	}
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-content h3 {
-      margin: 0 0 0.5rem 0;
-      font-weight: 700;
-    }
-    .card-content p {
-      flex-grow: 1;
-      margin-bottom: 1rem;
-    }
-    .card-content a {
-      align-self: flex-start;
-    }
-
-    /* About */
-    .about {
-      background: #fff;
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      border-radius: 16px;
-    }
-    .about h2 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-	  color: #111827;
-    }
-	.about h3 {
-		color: #111827;
-	}
-	.about p {
-		color: #000000;	
-	}
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-    }
-    .feature {
-      text-align: center;
-    }
-    .feature h3 {
-      font-weight: 700;
-      margin-top: 1rem;
-    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .card img{width:100%;height:200px;object-fit:cover}
+    .card-content{padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;flex-grow:1}
+    .card-content h3{margin:.25rem 0 .25rem;font-weight:700}
+    .card-content p{margin:0 0 .5rem;flex-grow:1;color:#374151}
+    .card .btn-primary{align-self:flex-start}
 
     /* Contact */
-    .contact {
-      padding: 4rem 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .contact form {
-      display: grid;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    input, textarea {
-      padding: 0.75rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-family: inherit;
-      font-size: 1rem;
-    }
-    button {
-      background: #2563EB;
-      color: white;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background: #1e4fcc;
-    }
-    .social {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    .social a {
-      text-decoration: none;
-      font-size: 1.5rem;
-      color: #2563EB;
-    }
-
-	.contact h2 {
-		color: #111827;
-	}
+    .contact{max-width:800px}
+    form{display:grid;gap:1rem;margin-top:1.25rem}
+    input,textarea{padding:.8rem;border-radius:10px;border:1px solid #D1D5DB;font-family:inherit;font-size:1rem;background:#fff}
+    button{background:var(--primary);color:#fff;padding:.9rem 1.25rem;border:none;border-radius:10px;font-weight:600;cursor:pointer}
+    button:hover{background:var(--primary-600)}
+    .social{margin-top:1rem;display:flex;justify-content:center;gap:1.25rem}
+    .social a{color:var(--primary);font-weight:600}
 
     /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #fff;
-      margin-top: 2rem;
-    }
+    footer{text-align:center;padding:2rem;background:#fff;margin-top:2rem}
   </style>
 </head>
 <body>
@@ -233,86 +93,98 @@
     <nav>
       <ul>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="https://github.com/lautaropereirab" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/lautaropereirab/" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- HERO: Name + What I do (como la imagen de referencia) -->
   <section class="hero">
-    <h1>Lautaro Pereira Basile</h1>
-    <p>Economist & Data Analyst</p>
-    <a href="#projects" class="btn-primary">View my work</a>
+    <!-- Columna izquierda: nombre + rol + CTA -->
+    <div class="hero-title">
+      <h1>Lautaro Pereira Basile</h1>
+      <p class="role">Economist & Data Analyst</p>
+      <div class="cta">
+        <a class="btn-primary" href="#projects">View my work</a>
+        <a class="btn-outline" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <!-- Columna derecha: WHAT I DO (texto más largo) -->
+    <aside class="hero-whatido" aria-label="What I do">
+      <h2>What I do</h2>
+      <p>
+        I turn complex data into clear, actionable solutions. With experience in consulting and fintech, I specialize in
+        extracting, modeling and visualizing information to uncover insights that improve decision-making and operational efficiency.
+        My focus is on building robust pipelines, automating reports and designing intuitive dashboards that reveal trends,
+        risks and opportunities—so stakeholders can move faster with confidence. :contentReference[oaicite:0]{index=0}
+      </p>
+      <p>
+        Day to day, that means writing efficient queries, optimizing datasets, and communicating findings with crisp visuals
+        tailored to business questions. I’m comfortable owning the full path from raw data to decision: from BigQuery and Python
+        transformations to KPI design and delivery in tools like Power BI, Tableau or Looker Studio. :contentReference[oaicite:1]{index=1}
+      </p>
+      <div class="skills" aria-label="Core skills">
+        <span class="chip">Python</span>
+        <span class="chip">SQL / BigQuery</span>
+        <span class="chip">Power BI</span>
+        <span class="chip">Tableau</span>
+        <span class="chip">Looker Studio</span>
+        <span class="chip">Excel</span>
+        <span class="chip">Git & GitHub</span> :contentReference[oaicite:2]{index=2}
+      </div>
+    </aside>
   </section>
 
   <!-- Projects -->
-  <section id="projects" class="projects">
+  <section id="projects" class="section">
     <h2>Projects</h2>
     <div class="grid">
-      <div class="card">
-        <img src="images/pic01.svg" alt="Web Scraper">
+      <article class="card">
+        <img src="images/pic01.svg" alt="Web Scraper project cover">
         <div class="card-content">
           <h3>Web Scraper</h3>
-          <p>Tool to collect and analyze supermarket product data.</p>
-          <a href="Proyect_1.html" class="btn-primary">View Case Study</a>
+          <p>Tool to collect and analyze supermarket product data (prices, discounts, trends).</p>
+          <a class="btn-primary" href="Proyect_1.html">View Case Study</a>
         </div>
-      </div>
-      <div class="card">
-        <img src="images/pic02.svg" alt="Data Visualization">
+      </article>
+
+      <article class="card">
+        <img src="images/pic02.svg" alt="Data Visualization project cover">
         <div class="card-content">
           <h3>Data Visualization</h3>
-          <p>Interactive dashboards and visual analysis for sales data.</p>
-          <a href="Proyect_2.html" class="btn-primary">View Case Study</a>
+          <p>Interactive and static charts to explore a retail dataset and surface insights.</p>
+          <a class="btn-primary" href="Proyect_2.html">View Case Study</a>
         </div>
-      </div>
-      <div class="card">
-        <img src="images/pic03.svg" alt="Dashboards">
+      </article>
+
+      <article class="card">
+        <img src="images/pic03.svg" alt="Fintech dashboard project cover">
         <div class="card-content">
           <h3>Dashboards</h3>
-          <p>Fintech Credit Area KPI Dashboard for decision making.</p>
-          <a href="Proyect_3.html" class="btn-primary">View Case Study</a>
+          <p>Fintech Credit Area KPI dashboard for monitoring conversion, cohorts and risk.</p>
+          <a class="btn-primary" href="Proyect_3.html">View Case Study</a>
         </div>
-      </div>
-      <!-- Placeholder projects
-      <div class="card">
-        <img src="images/placeholder.svg" alt="Coming Soon">
+      </article>
+
+      <!-- Placeholder extra
+      <article class="card">
+        <img src="images/placeholder.svg" alt="Coming soon placeholder">
         <div class="card-content">
           <h3>Coming Soon</h3>
-          <p>Placeholder for future projects.</p>
-          <a href="#" class="btn-primary">View Case Study</a>
+          <p>New analytics and visualization work in progress.</p>
+          <a class="btn-primary" href="#">View Case Study</a>
         </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- About -->
-  <section id="about" class="about">
-    <h2>What I do</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Data-Driven Insights</h3>
-        <p>Transform raw data into actionable insights.</p>
-      </div>
-      <div class="feature">
-        <h3>Tailored Solutions</h3>
-        <p>Custom analytics for unique business challenges.</p>
-      </div>
-      <div class="feature">
-        <h3>Visual Storytelling</h3>
-        <p>Clear, engaging dashboards and reports.</p>
-      </div>
-      <div class="feature">
-        <h3>Continuous Learning</h3>
-        <p>Adapting new tools to stay ahead in data-driven industries.</p>
-      </div>
-    </div>
+      </article>-->
+    </div> 
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="contact">
+  <section id="contact" class="section contact">
     <h2>Get in touch</h2>
-    <p>Let’s connect! Whether it’s a question, collaboration, or just a hello!</p>
+    <p>Let’s connect! Whether it’s a question, collaboration, or just a hello.</p>
     <form method="post" action="https://formspree.io/f/mbljegpq">
       <input type="text" name="name" placeholder="Name" required />
       <input type="email" name="email" placeholder="Email" required />
@@ -320,8 +192,9 @@
       <button type="submit">Send Message</button>
     </form>
     <div class="social">
-      <a href="https://github.com/lautaropereirab" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/lautaropereirab/" target="_blank">LinkedIn</a>
+      <a href="mailto:lautaropereirabasile@gmail.com">Email</a>
+      <a href="https://github.com/lautaropereirab" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/lautaropereirab/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </section>
 
