@@ -1,80 +1,63 @@
-<!DOCTYPE HTML>
-<!--
-    Hyperspace by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-    <head>
-        <title>LPB - Portfolio</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
-    <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboards – LPB Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:'Inter',sans-serif;background:#F9FAFB;color:#111827}
+    header{position:sticky;top:0;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;box-shadow:0 2px 8px rgba(0,0,0,.05);z-index:1000}
+    header .logo{font-weight:800;font-size:1.2rem;color:#2563EB;text-decoration:none}
+    nav ul{display:flex;list-style:none;margin:0;padding:0;gap:1.5rem}
+    nav a{text-decoration:none;color:#111827;font-weight:600}
+    nav a:hover{color:#2563EB}
+    .project{max-width:900px;margin:3rem auto;padding:0 2rem}
+    .project h1{font-size:2.5rem;font-weight:800;margin-bottom:1rem;color:#111827}
+    .project img{width:100%;border-radius:12px;margin:2rem 0;object-fit:cover}
+    .project p{margin-bottom:1rem;line-height:1.6}
+    .btn-back{display:inline-block;margin-top:2rem;padding:.75rem 1.5rem;background:#2563EB;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;transition:background .2s}
+    .btn-back:hover{background:#1e4fcc}
+    footer{text-align:center;padding:2rem;background:#fff;margin-top:4rem}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">LPB</a>
+    <nav>
+      <ul>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <!-- Header -->
-        <header id="header">
-            <a href="index.html" class="title">Portfolio - LPB</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact_me.html">Contact Me</a></li>
-                </ul>
-            </nav>
-        </header>
+  <section class="project">
+    <h1>Dashboards (Fintech Credit KPIs)</h1>
+    <img src="images/pic03.svg" alt="Fintech Credit Area KPI Dashboard">
+    <p>Design and build of KPI dashboards for the Credit area in a fintech context, focusing on clarity, decision enablement, and business impact.</p>
 
-        <!-- Wrapper -->
-        <div id="wrapper">
+    <p><strong>Key Features:</strong></p>
+    <p>• Interactive charts for operational monitoring<br>
+       • Custom visuals aligned to business questions<br>
+       • Views by product, cohort, conversion & performance</p>
 
-            <!-- Main -->
-            <section id="main" class="wrapper">
-                <div class="inner">
-                    <h1 class="major">Dashboard</h1>
-                    <!-- <span class="image fit"><img src="images/pic04.jpg" alt="" /></span> -->
-                    <p>Here you can see how a dashboard for a specific area of business is designed and what type of information you can find</p>
-                    <p>
-                        <strong>Key Features:</strong><br>
-                        - Interactive charts to explore the data.<br>
-                        - Static and customized charts to represent different aspects of the dataset.<br>
-                        - Ability to visualize data related to products, revenue, categories, and more.<br>
-                    </p>
-                    <p>
-                        <strong>Technologies Used:</strong><br>
-                        - Python, Pandas, NumPy, Seaborn, Matplotlib, Plotly Express.
-                    </p>
-                    <p>
-                        <strong>Use Cases:</strong><br>
-                        - Analyze sales trends and identify best-performing products.<br>
-                        - Visualize customer behavior, age, and purchase patterns.<br>
-                        - Monitor sales data to optimize inventory and marketing strategies.<br>
-                    </p>
-                    <p>
-                        <a href="https://github.com/lautaropereirab/sales_viz.git">See more about this project on Github</a>
-                    </p>
-                </div>
-            </section>
+    <p><strong>Technologies Used:</strong><br>
+       Python, Pandas, NumPy, Plotly / Looker Studio (según el caso)</p>
 
-        </div>
+    <p><strong>Use Cases:</strong><br>
+       • Track conversion & funnel performance<br>
+       • Identify drop-offs & portfolio health drivers<br>
+       • Support data-informed strategy decisions</p>
 
-        <!-- Footer -->
-        <footer id="footer" class="wrapper alt">
-            <div class="inner">
-                <ul class="menu">
-                    <li>&copy; Pincopan. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                </ul>
-            </div>
-        </footer>
+    <p><a href="https://github.com/lautaropereirab/sales_viz.git" target="_blank" rel="noopener">Related repo on GitHub</a></p>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+    <a class="btn-back" href="index.html">← Back to Portfolio</a>
+  </section>
 
-    </body>
+  <footer>
+    <p>&copy; 2025 Lautaro Pereira Basile. All rights reserved.</p>
+  </footer>
+</body>
 </html>
