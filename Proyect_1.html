@@ -1,83 +1,141 @@
-<!DOCTYPE HTML>
-<!--
-    Hyperspace by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-    <head>
-        <title>LPB - Portfolio</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    </head>
-    <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Case Study - LPB Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #F9FAFB;
+      color: #111827;
+    }
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      z-index: 1000;
+    }
+    header .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #2563EB;
+      text-decoration: none;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 1.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #111827;
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: #2563EB;
+    }
 
-        <!-- Header -->
-        <header id="header">
-            <a href="index.html" class="title">Portfolio - LPB</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact_me.html">Contact Me</a></li>
-                </ul>
-            </nav>
-        </header>
+    /* Project content */
+    .project {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    .project h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .project img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 2rem 0;
+    }
+    .project p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .project strong {
+      font-weight: 700;
+    }
+    .btn-back {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: #2563EB;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-back:hover {
+      background: #1e4fcc;
+    }
 
-        <!-- Wrapper -->
-        <div id="wrapper">
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #fff;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <a href="index.html" class="logo">LPB</a>
+    <nav>
+      <ul>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-            <!-- Main -->
-            <section id="main" class="wrapper">
-                <div class="inner">
-                    <h1 class="major">Price Variation Web Scraping</h1>
-                    <span class="image fit"><img src="images/web_scrapping.jpeg" alt="" /></span>
-                    <p>A powerful web scraping tool designed to collect and analyze supermarket product data from <a href="https://diaonline.supermercadosdia.com.ar/">DIA</a> .</p>
-                    <p>
-                        <strong>Key Features:</strong><br>
-                        - Price Variation Analysis: Track price changes over time to uncover market trends and pricing strategies.<br>
-                        - Data Visualization: Create interactive graphs and dashboards to explore pricing, discounts, and best-selling categories.<br>
-                        - Price Comparison: Compare prices across supermarkets to find the best deals.<br>
-                        - Inventory & Assortment Optimization: Identify products with frequent price fluctuations for smarter inventory and marketing strategies.<br>
-                        - Impact of Discount Campaigns: Analyze how promotions affect product prices and demand.
-                    </p>
-                    <p>
-                        <strong>Use Cases:</strong><br>
-                        - Inflation and economic trend monitoring.<br>
-                        - Price alerts and anomaly detection.<br>
-                        - Consumer behavior research and predictive modeling.<br>
-                        - Benchmarking for suppliers and smart shopping apps.
-                    </p>
-                    <p>
-                        <strong>Technologies Used:</strong><br>
-                        - Selenium, Requests, BeautifulSoup, Pandas, NumPy.
-                    </p>
-					<p>
-						<a href="https://github.com/lautaropereirab/scrapper_dia.git">See more about this project on Github</a> 
-					</p>					
-                </div>
-            </section>
+  <!-- Project -->
+  <section class="project">
+    <h1>Web Scraper</h1>
+    <img src="images/web_scrapping.jpeg" alt="Web Scraper Project">
+    <p>A powerful web scraping tool designed to collect and analyze supermarket product data from <a href="https://diaonline.supermercadosdia.com.ar/" target="_blank">DIA</a>.</p>
 
-        </div>
+    <p><strong>Key Features:</strong></p>
+    <p>• Price Variation Analysis<br>
+       • Data Visualization of discounts and categories<br>
+       • Price Comparison across supermarkets<br>
+       • Inventory & Assortment Optimization<br>
+       • Impact of Discount Campaigns analysis</p>
 
-        <!-- Footer -->
-        <footer id="footer" class="wrapper alt">
-            <div class="inner">
-                <ul class="menu">
-                    <li>&copy; Pincopan. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                </ul>
-            </div>
-        </footer>
+    <p><strong>Use Cases:</strong></p>
+    <p>• Inflation and economic trend monitoring<br>
+       • Price alerts and anomaly detection<br>
+       • Consumer behavior research<br>
+       • Benchmarking for suppliers</p>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+    <p><strong>Technologies Used:</strong><br>
+       Selenium, Requests, BeautifulSoup, Pandas, NumPy</p>
 
-    </body>
+    <p><a href="https://github.com/lautaropereirab/scrapper_dia.git" target="_blank">See more about this project on GitHub</a></p>
+
+    <a href="index.html" class="btn-back">← Back to Portfolio</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Lautaro Pereira Basile. All rights reserved.</p>
+  </footer>
+</body>
 </html>
