@@ -26,95 +26,49 @@
     display:flex;justify-content:space-between;align-items:center;
     padding:1rem 2rem;box-shadow:0 2px 8px rgba(0,0,0,.05);z-index:1000
   }
-  /* .logo{font-weight:800;font-size:1.2rem;color:var(--primary)} */
+  .logo img{
+    height:100px;
+    width:auto;
+    display:block;
+  }
   nav ul{display:flex;list-style:none;margin:0;padding:0;gap:1.5rem}
   nav a{font-weight:600}
   nav a:hover{color:var(--primary)}
 
-  /* HERO (contenedor general) */
-  .hero{
-    max-width:1200px;margin:0 auto;padding:3.5rem 2rem 2rem;
+  /* Botón hamburguesa */
+  .menu-toggle {
+    display:none;
+    background:transparent;
+    border:0;
+    padding:.5rem;
+    border-radius:10px;
+    color:var(--fg);
+    cursor:pointer;
   }
+  .menu-toggle:focus-visible { outline:2px solid var(--primary); }
 
-  .logo img{
-  height: 100px;   /* ajustá según el tamaño que quieras */
-  width: auto;
-  display: block;
-  } 
+  /* HERO */
+  .hero{max-width:1200px;margin:0 auto;padding:3.5rem 2rem 2rem;}
+  .hero-header{text-align:center;margin-bottom:1.25rem;}
+  .hero-header h1{font-size:3rem;line-height:1.1;margin:.25rem 0;font-weight:800;color:var(--fg);}
+  .hero-header .role{font-size:1.25rem;margin:.25rem 0 0;font-weight:600;color:var(--fg);}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch;}
+  @media (max-width:920px){.hero-grid{grid-template-columns:1fr;}}
 
-  /* Título y rol centrados (encima de las dos columnas) */
-  .hero-header{
-    text-align:center;
-    margin-bottom:1.25rem;
-  }
-  .hero-header h1{
-    font-size:3rem;line-height:1.1;margin:.25rem 0;font-weight:800;color:var(--fg);
-  }
-  .hero-header .role{
-    font-size:1.25rem;margin:.25rem 0 0;font-weight:600;color:var(--fg);
-  }
+  .hero-photo,.hero-whatido{height:100%;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow);display:block;}
 
-  /* Grid: izquierda imagen | derecha What I do (alturas iguales) */
-  .hero-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: stretch;  /* fuerza misma altura */
-  }
-  @media (max-width: 920px){
-    .hero-grid{ grid-template-columns:1fr; }
-  }
-
-  /* Imagen con misma altura que el panel de What I do */
-  .hero-photo,
-  .hero-whatido{ height:100%; }
-  .hero-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    display:block;
-  }
-
-  /* WHAT I DO panel */
-  .hero-whatido{
-    background:var(--card);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    padding:1.75rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .hero-whatido h2{
-    margin:0 0 .75rem;
-    font-size:1.125rem;letter-spacing:.02em;color:#374151;font-weight:700;text-transform:uppercase;
-    text-align: center;
-  }
-  .hero-whatido p{
-    line-height:1.8;         /* + aire */
-    margin:0 0 1rem;         /* separa párrafos */
-    font-size:1.05rem;
-    color:#1F2937;
-  }
-  .hero-whatido p + p{ margin-top:.5rem; }
-  .hero-whatido .skills{
-    margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;
-    margin-bottom: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-  }
-  .chip{
-    padding:.4rem .65rem;border-radius:999px;background:#F3F4F6;border:1px solid #E5E7EB;font-size:.9rem;color:#374151
-  }
+  .hero-whatido{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.75rem;display:flex;flex-direction:column;}
+  .hero-whatido h2{margin:0 0 .75rem;font-size:1.125rem;letter-spacing:.02em;color:#374151;font-weight:700;text-transform:uppercase;text-align:center;}
+  .hero-whatido p{line-height:1.8;margin:0 0 1rem;font-size:1.05rem;color:#1F2937;}
+  .hero-whatido p+p{margin-top:.5rem;}
+  .hero-whatido .skills{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:auto;}
+  .chip{padding:.4rem .65rem;border-radius:999px;background:#F3F4F6;border:1px solid #E5E7EB;font-size:.9rem;color:#374151}
 
   /* CTAs */
   .cta{display:flex;gap:.75rem;flex-wrap:wrap}
   .cta-centered{justify-content:center;margin-top:1rem;display:flex;gap:.75rem}
-  .btn-primary,.btn-outline{
-    padding:.75rem 1.25rem;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;gap:.5rem
-  }
+  .btn-primary,.btn-outline{padding:.75rem 1.25rem;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;gap:.5rem}
   .btn-primary{background:var(--primary);color:#fff}
   .btn-primary:hover{background:var(--primary-600)}
   .btn-outline{border:1px solid #D1D5DB;color:var(--fg);background:#fff}
@@ -144,7 +98,30 @@
 
   /* Footer */
   footer{text-align:center;padding:2rem;background:#fff;margin-top:2rem}
-</style>
+
+  /* Responsive nav */
+  @media (max-width:920px){
+    .menu-toggle{display:inline-flex;align-items:center;justify-content:center;}
+    nav{
+      position:absolute;
+      top:100%;right:0;left:0;
+      background:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.08);
+      border-bottom-left-radius:var(--radius);
+      border-bottom-right-radius:var(--radius);
+      transform:translateY(-8px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+    }
+    nav ul{flex-direction:column;gap:.75rem;padding:1rem 1.25rem;}
+    header.nav-open nav{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+  }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -152,7 +129,14 @@
     <a href="#" class="logo">
       <img src="images/L (500 x 300 px).png" alt="Logo LPB">
     </a>
-    <nav>
+
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <nav id="primary-nav">
       <ul>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -162,52 +146,46 @@
     </nav>
   </header>
 
-  <!-- HERO: Name (centrado) + Grid (Imagen | What I do) -->
-<section class="hero">
-  <!-- Encabezado centrado sobre ambas columnas -->
-  <div class="hero-header">
-    <h1>Economist &amp; Data Analyst</h1>
-    <!-- <p class="role">Economist &amp; Data Analyst</p> -->
-  </div>
-
-  <!-- Grid de 2 columnas: izquierda imagen, derecha What I do -->
-  <div class="hero-grid">
-    <div class="hero-photo">
-      <img src="images/Selfie.jpg" alt="Lautaro Pereira Basile portrait">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-header">
+      <h1>Economist &amp; Data Analyst</h1>
     </div>
-    <aside class="hero-whatido" aria-label="What I do">
-      <h2>WHAT I DO</h2>
-      <p>
-        I turn complex data into clear, actionable solutions. With experience in consulting and fintech,
-        I specialize in extracting, modeling and visualizing information to uncover insights that improve
-        decision-making and operational efficiency. My focus is on building robust pipelines, automating
-        reports and designing intuitive dashboards that reveal trends, risks and opportunities—so stakeholders
-        can move faster with confidence.
-      </p>
-      <p>
-        Day to day, that means writing efficient queries, optimizing datasets, and communicating findings
-        with crisp visuals tailored to business questions. I’m comfortable owning the full path from raw data
-        to decision: from BigQuery and Python transformations to KPI design and delivery in tools like Power BI,
-        Tableau or Looker Studio.
-      </p>
-      <div class="skills" aria-label="Core skills">
-        <span class="chip">Python</span>
-        <span class="chip">SQL / BigQuery</span>
-        <span class="chip">Power BI</span>
-        <span class="chip">Tableau</span>
-        <span class="chip">Looker Studio</span>
-        <span class="chip">Excel</span>
-        <span class="chip">Git &amp; GitHub</span>
+    <div class="hero-grid">
+      <div class="hero-photo">
+        <img src="images/Selfie.jpg" alt="Lautaro Pereira Basile portrait">
       </div>
-    </aside>
-  </div>
-
-  <!-- CTAs centrados abajo del bloque -->
-  <div class="cta cta-centered">
-    <a class="btn-primary" href="#projects">View my work</a>
-    <a class="btn-outline" href="#contact">Get in touch</a>
-  </div>
-</section>
+      <aside class="hero-whatido" aria-label="What I do">
+        <h2>WHAT I DO</h2>
+        <p>
+          I turn complex data into clear, actionable solutions. With experience in consulting and fintech,
+          I specialize in extracting, modeling and visualizing information to uncover insights that improve
+          decision-making and operational efficiency. My focus is on building robust pipelines, automating
+          reports and designing intuitive dashboards that reveal trends, risks and opportunities—so stakeholders
+          can move faster with confidence.
+        </p>
+        <p>
+          Day to day, that means writing efficient queries, optimizing datasets, and communicating findings
+          with crisp visuals tailored to business questions. I’m comfortable owning the full path from raw data
+          to decision: from BigQuery and Python transformations to KPI design and delivery in tools like Power BI,
+          Tableau or Looker Studio.
+        </p>
+        <div class="skills" aria-label="Core skills">
+          <span class="chip">Python</span>
+          <span class="chip">SQL / BigQuery</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">Tableau</span>
+          <span class="chip">Looker Studio</span>
+          <span class="chip">Excel</span>
+          <span class="chip">Git &amp; GitHub</span>
+        </div>
+      </aside>
+    </div>
+    <div class="cta cta-centered">
+      <a class="btn-primary" href="#projects">View my work</a>
+      <a class="btn-outline" href="#contact">Get in touch</a>
+    </div>
+  </section>
 
   <!-- Projects -->
   <section id="projects" class="section">
@@ -221,7 +199,6 @@
           <a class="btn-primary" href="Proyect_1.html">View Case Study</a>
         </div>
       </article>
-
       <article class="card">
         <img src="images/DV Dia.webp" alt="Data Visualization project cover">
         <div class="card-content">
@@ -230,7 +207,6 @@
           <a class="btn-primary" href="Proyect_2.html">View Case Study</a>
         </div>
       </article>
-
       <article class="card">
         <img src="images/Uala.webp" alt="Fintech dashboard project cover">
         <div class="card-content">
@@ -239,17 +215,7 @@
           <a class="btn-primary" href="Proyect_3.html">View Case Study</a>
         </div>
       </article>
-
-      <!-- Placeholder extra
-      <article class="card">
-        <img src="images/placeholder.svg" alt="Coming soon placeholder">
-        <div class="card-content">
-          <h3>Coming Soon</h3>
-          <p>New analytics and visualization work in progress.</p>
-          <a class="btn-primary" href="#">View Case Study</a>
-        </div>
-      </article>-->
-    </div> 
+    </div>
   </section>
 
   <!-- Contact -->
@@ -273,5 +239,32 @@
   <footer>
     <p>&copy; 2025 Lautaro Pereira Basile. All rights reserved.</p>
   </footer>
+
+  <!-- JS -->
+  <script>
+    (function () {
+      const header = document.querySelector('header');
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('primary-nav');
+
+      function setOpen(isOpen) {
+        header.classList.toggle('nav-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+      }
+
+      toggle.addEventListener('click', () => {
+        const isOpen = !header.classList.contains('nav-open');
+        setOpen(isOpen);
+      });
+
+      nav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') setOpen(false);
+      });
+
+      const mq = window.matchMedia('(min-width: 921px)');
+      mq.addEventListener('change', () => setOpen(false));
+    })();
+  </script>
 </body>
 </html>
