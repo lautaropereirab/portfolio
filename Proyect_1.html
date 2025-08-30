@@ -139,9 +139,9 @@
     <ol>
       <li><strong>Access & initial navigation:</strong> Selenium opens the site, expands the category menu, and navigates internal pages.</li>
       <li><strong>Category exploration:</strong> Detects and iterates categories/subcategories, interacting with dynamic menus and checkboxes.</li>
-      <li><strong>Dynamic product loading:</strong> Auto-scrolls and clicks <em>“Mostrar más”</em> to load all visible items.</li>
+      <li><strong>Dynamic product loading:</strong> Auto-scrolls to load all visible items.</li>
       <li><strong>Extraction with BeautifulSoup:</strong> Parses HTML to capture per product: name/descriptor, prices, discounts, price per kilo/unit, product link, and image.</li>
-      <li><strong>Structuring & storage:</strong> Consolidates data into a <em>pandas</em> DataFrame, adds a <em>fecha_scrapeo</em> field, and exports to CSV.</li>
+      <li><strong>Structuring & storage:</strong> Consolidates data into a DataFrame, adds the date of execution and exports to CSV.</li>
     </ol>
 
     <h2>Output Schema</h2>
@@ -152,7 +152,7 @@
       <li><span class="code">producto</span></li>
       <li><span class="code">precio_sin_descuento</span>, <span class="code">precio</span>, <span class="code">precio_por_k</span></li>
       <li><span class="code">link</span>, <span class="code">imagen</span></li>
-      <li><span class="code">fecha_scrapeo</span> (añadida en cada ejecución)</li>
+      <li><span class="code">fecha_scrapeo</span></li>
     </ul>
     <p>Default output file: <span class="code">Productos Obtenidos/Almacen.csv</span></p>
 
