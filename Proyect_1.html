@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Case Study - LPB Portfolio</title>
+  <title>Project #1 – DIA Supermarket Web Scraping · LPB Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
@@ -57,17 +57,32 @@
       font-weight: 800;
       margin-bottom: 1rem;
     }
+    .project h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+    }
     .project img {
       width: 100%;
       border-radius: 12px;
       margin: 2rem 0;
     }
-    .project p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
+    .project p,
+    .project li {
+      line-height: 1.65;
     }
-    .project strong {
-      font-weight: 700;
+    .project ul, .project ol {
+      padding-left: 1.25rem;
+    }
+    .code {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #EEF2FF;
+      color: #111827;
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
     }
     .btn-back {
       display: inline-block;
@@ -108,27 +123,53 @@
 
   <!-- Project -->
   <section class="project">
-    <h1>Web Scraper</h1>
-    <img src="images/web_scrapping.jpeg" alt="Web Scraper Project">
-    <p>A powerful web scraping tool designed to collect and analyze supermarket product data from <a href="https://diaonline.supermercadosdia.com.ar/" target="_blank">DIA</a>.</p>
+    <h1>Project #1: DIA Supermarket Web Scraping</h1>
+    <img src="images/image_scraper.jpg" alt="DIA Supermarket Web Scraping Project">
 
-    <p><strong>Key Features:</strong></p>
-    <p>• Price Variation Analysis<br>
-       • Data Visualization of discounts and categories<br>
-       • Price Comparison across supermarkets<br>
-       • Inventory & Assortment Optimization<br>
-       • Impact of Discount Campaigns analysis</p>
+    <h2>Description</h2>
+    <p>
+      An automated <strong>web-scraping process</strong> that collects structured information directly from
+      <a href="https://diaonline.supermercadosdia.com.ar/" target="_blank" rel="noopener">DIA Online</a>.
+      The focus is on <strong>navigation automation and data extraction</strong> (categories, products, and prices), ensuring the script
+      behaves like a user and stores results ready for analysis.
+    </p>
 
-    <p><strong>Use Cases:</strong></p>
-    <p>• Inflation and economic trend monitoring<br>
-       • Price alerts and anomaly detection<br>
-       • Consumer behavior research<br>
-       • Benchmarking for suppliers</p>
+    <h2>Scraping Flow</h2>
+    <ol>
+      <li><strong>Access & initial navigation:</strong> Selenium opens the site, expands the category menu, and navigates internal pages.</li>
+      <li><strong>Category exploration:</strong> Detects and iterates categories/subcategories, interacting with dynamic menus and checkboxes.</li>
+      <li><strong>Dynamic product loading:</strong> Auto-scrolls and clicks <em>“Mostrar más”</em> to load all visible items.</li>
+      <li><strong>Extraction with BeautifulSoup:</strong> Parses HTML to capture per product: name/descriptor, prices, discounts, price per kilo/unit, product link, and image.</li>
+      <li><strong>Structuring & storage:</strong> Consolidates data into a <em>pandas</em> DataFrame, adds a <em>fecha_scrapeo</em> field, and exports to CSV.</li>
+    </ol>
 
-    <p><strong>Technologies Used:</strong><br>
-       Selenium, Requests, BeautifulSoup, Pandas, NumPy</p>
+    <h2>Output Schema</h2>
+    <p>Main dataset columns (preserving original names):</p>
+    <ul>
+      <li><span class="code">descuento_1</span>, <span class="code">descuento_2</span></li>
+      <li><span class="code">campo_vacio_1</span>, <span class="code">campo_vacio_2</span>, <span class="code">campo_vacio_3</span></li>
+      <li><span class="code">producto</span></li>
+      <li><span class="code">precio_sin_descuento</span>, <span class="code">precio</span>, <span class="code">precio_por_k</span></li>
+      <li><span class="code">link</span>, <span class="code">imagen</span></li>
+      <li><span class="code">fecha_scrapeo</span> (añadida en cada ejecución)</li>
+    </ul>
+    <p>Default output file: <span class="code">Productos Obtenidos/Almacen.csv</span></p>
 
-    <p><a href="https://github.com/lautaropereirab/scrapper_dia.git" target="_blank">See more about this project on GitHub</a></p>
+    <h2>Libraries Used</h2>
+    <ul>
+      <li><strong>Selenium</strong> – navigation & interaction automation</li>
+      <li><strong>BeautifulSoup (bs4)</strong> – HTML parsing & extraction</li>
+      <li><strong>Pandas</strong> – DataFrame handling & CSV export</li>
+      <li><strong>lxml</strong> – fast, efficient parser</li>
+      <li><strong>time / datetime / re</strong> – waits, timestamps, and regex</li>
+    </ul>
+
+    <h2>Repository</h2>
+    <p>
+      <a href="https://github.com/lautaropereirab/scrapper_dia.git" target="_blank" rel="noopener">
+        See more about this project on GitHub
+      </a>
+    </p>
 
     <a href="index.html" class="btn-back">← Back to Portfolio</a>
   </section>
