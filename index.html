@@ -15,6 +15,7 @@
     --primary-600:#1e4fcc;
     --shadow:0 4px 16px rgba(0,0,0,.08);
     --radius:16px;
+    --line:#E5E7EB;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg)}
@@ -26,59 +27,72 @@
     display:flex;justify-content:space-between;align-items:center;
     padding:1rem 2rem;box-shadow:0 2px 8px rgba(0,0,0,.05);z-index:1000
   }
-  .logo img{
-    height:100px;
-    width:auto;
-    display:block;
-  }
+  .logo img{height:100px;width:auto;display:block;}
   nav ul{display:flex;list-style:none;margin:0;padding:0;gap:1.5rem}
   nav a{font-weight:600}
   nav a:hover{color:var(--primary)}
 
   /* Botón hamburguesa */
-  .menu-toggle {
-    display:none;
-    background:transparent;
-    border:0;
-    padding:.5rem;
-    border-radius:10px;
-    color:var(--fg);
-    cursor:pointer;
-  }
-  .menu-toggle:focus-visible { outline:2px solid var(--primary); }
+  .menu-toggle{display:none;background:transparent;border:0;padding:.5rem;border-radius:10px;color:var(--fg);cursor:pointer;}
+  .menu-toggle:focus-visible{outline:2px solid var(--primary);}
 
-  /* HERO */
-  .hero{max-width:1200px;margin:0 auto;padding:3.5rem 2rem 2rem;}
-  .hero-header{text-align:center;margin-bottom:1.25rem;}
+  /* HERO HEADER (solo el título) */
+  .hero{max-width:1200px;margin:0 auto;padding:3.5rem 2rem 1.5rem;}
+  .hero-header{text-align:center;margin-bottom:0.5rem;}
   .hero-header h1{font-size:3rem;line-height:1.1;margin:.25rem 0;font-weight:800;color:var(--fg);}
-  .hero-header .role{font-size:1.25rem;margin:.25rem 0 0;font-weight:600;color:var(--fg);}
-  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch;}
-  @media (max-width:920px){.hero-grid{grid-template-columns:1fr;}}
 
-  .hero-photo,.hero-whatido{height:100%;}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow);display:block;}
+  /* LAYOUT PRINCIPAL: izquierda (foto + what I do) / derecha (proyectos) */
+  .main-wrap{max-width:1200px;margin:0 auto;padding:0 2rem;}
+  .layout{
+    display:grid;
+    grid-template-columns: 350px minmax(0,1fr);
+    gap:2rem;
+    align-items:start;
+  }
 
-  .hero-whatido{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.75rem;display:flex;flex-direction:column;}
-  .hero-whatido h2{margin:0 0 .75rem;font-size:1.125rem;letter-spacing:.02em;color:#374151;font-weight:700;text-transform:uppercase;text-align:center;}
-  .hero-whatido p{line-height:1.8;margin:0 0 1rem;font-size:1.05rem;color:#1F2937;}
-  .hero-whatido p+p{margin-top:.5rem;}
-  .hero-whatido .skills{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:auto;}
+  /* Columna izquierda */
+  .left-col{display:flex;flex-direction:column;gap:1.25rem;position:relative;}
+  .hero-photo{border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+  .hero-photo img{display:block;width:100%;height:auto;object-fit:cover;}
+  .hero-whatido{
+    background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:1.25rem;display:flex;flex-direction:column;
+  }
+  .hero-whatido h2{
+    margin:0 0 .5rem;font-size:1.125rem;letter-spacing:.02em;color:#374151;
+    font-weight:700;text-transform:uppercase;text-align:center;
+  }
+  .hero-whatido p{line-height:1.75;margin:0 0 .75rem;font-size:1.02rem;color:#1F2937;}
+  .skills{margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.5rem}
   .chip{padding:.4rem .65rem;border-radius:999px;background:#F3F4F6;border:1px solid #E5E7EB;font-size:.9rem;color:#374151}
 
-  /* CTAs */
-  .cta{display:flex;gap:.75rem;flex-wrap:wrap}
-  .cta-centered{justify-content:center;margin-top:1rem;display:flex;gap:.75rem}
+  /* Columna derecha + separador */
+  .right-col{
+    position:relative;
+    padding-left:2rem;
+    border-left:1px solid var(--line);
+  }
+  /* Opcional: línea más suave en pantallas retina */
+  .right-col:before{
+    content:"";
+    position:absolute;left:0;top:0;bottom:0;width:1px;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.02), rgba(0,0,0,0.05));
+    pointer-events:none;
+  }
+
+  /* CTAs debajo del header (opcionales) */
+  .cta{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin:1rem 0 2rem;}
   .btn-primary,.btn-outline{padding:.75rem 1.25rem;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;gap:.5rem}
   .btn-primary{background:var(--primary);color:#fff}
   .btn-primary:hover{background:var(--primary-600)}
   .btn-outline{border:1px solid #D1D5DB;color:var(--fg);background:#fff}
   .btn-outline:hover{border-color:#9CA3AF}
 
-  /* Sections */
-  .section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
-  .section h2{text-align:center;font-size:2rem;font-weight:800;margin-bottom:2rem}
+  /* Secciones */
+  .section{padding:0;margin:0 0 3rem}
+  .section h2{font-size:2rem;font-weight:800;margin:0 0 1.25rem}
 
-  /* Projects */
+  /* Projects grid */
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
   .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
   .card img{width:100%;height:200px;object-fit:cover}
@@ -88,7 +102,10 @@
   .card .btn-primary{align-self:flex-start}
 
   /* Contact */
-  .contact{max-width:800px}
+  .contact-wrap{max-width:1200px;margin:0 auto;padding:0 2rem;}
+  .contact{max-width:800px;margin:0 auto 2.5rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem;}
+  .contact h2{text-align:center;margin-top:0;margin-bottom:1rem;font-size:2rem}
+  .contact p{text-align:center;margin:0 0 1rem;}
   form{display:grid;gap:1rem;margin-top:1.25rem}
   input,textarea{padding:.8rem;border-radius:10px;border:1px solid #D1D5DB;font-family:inherit;font-size:1rem;background:#fff}
   button{background:var(--primary);color:#fff;padding:.9rem 1.25rem;border:none;border-radius:10px;font-weight:600;cursor:pointer}
@@ -97,29 +114,23 @@
   .social a{color:var(--primary);font-weight:600}
 
   /* Footer */
-  footer{text-align:center;padding:2rem;background:#fff;margin-top:2rem}
+  footer{text-align:center;padding:2rem;background:#fff;margin-top:1rem}
 
-  /* Responsive nav */
+  /* Responsive nav y layout */
   @media (max-width:920px){
     .menu-toggle{display:inline-flex;align-items:center;justify-content:center;}
     nav{
-      position:absolute;
-      top:100%;right:0;left:0;
-      background:#fff;
+      position:absolute;top:100%;right:0;left:0;background:#fff;
       box-shadow:0 8px 20px rgba(0,0,0,.08);
-      border-bottom-left-radius:var(--radius);
-      border-bottom-right-radius:var(--radius);
-      transform:translateY(-8px);
-      opacity:0;
-      pointer-events:none;
-      transition:opacity .2s ease, transform .2s ease;
+      border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius);
+      transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;
     }
     nav ul{flex-direction:column;gap:.75rem;padding:1rem 1.25rem;}
-    header.nav-open nav{
-      opacity:1;
-      transform:translateY(0);
-      pointer-events:auto;
-    }
+    header.nav-open nav{opacity:1;transform:translateY(0);pointer-events:auto;}
+
+    .layout{grid-template-columns:1fr;gap:1.75rem;}
+    .right-col{border-left:0;padding-left:0;}
+    .right-col:before{display:none;}
   }
   </style>
 </head>
@@ -146,92 +157,105 @@
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- Título -->
   <section class="hero">
     <div class="hero-header">
       <h1>Data Analyst &amp; Economist</h1>
     </div>
-    <div class="hero-grid">
-      <div class="hero-photo">
-        <img src="images/Selfie.jpg" alt="Lautaro Pereira Basile portrait">
-      </div>
-      <aside class="hero-whatido" aria-label="What I do">
-        <h2>WHAT I DO</h2>
-        <p>
-          I turn complex data into clear, actionable solutions. With experience in consulting and fintech,
-          I specialize in extracting, modeling and visualizing information to uncover insights that improve
-          decision-making and operational efficiency. My focus is on building robust pipelines, automating
-          reports and designing intuitive dashboards that reveal trends, risks and opportunities—so stakeholders
-          can move faster with confidence.
-        </p>
-        <p>
-          Day to day, that means writing efficient queries, optimizing datasets, and communicating findings
-          with crisp visuals tailored to business questions. I’m comfortable owning the full path from raw data
-          to decision: from BigQuery and Python transformations to KPI design and delivery in tools like Power BI,
-          Tableau or Looker Studio.
-        </p>
-        <div class="skills" aria-label="Core skills">
-          <span class="chip">Python</span>
-          <span class="chip">SQL / BigQuery</span>
-          <span class="chip">Power BI</span>
-          <span class="chip">Tableau</span>
-          <span class="chip">Looker Studio</span>
-          <span class="chip">Excel</span>
-          <span class="chip">Git &amp; GitHub</span>
-        </div>
-      </aside>
-    </div>
-    <div class="cta cta-centered">
-      <a class="btn-primary" href="#projects">View my work</a>
-      <a class="btn-outline" href="#contact">Get in touch</a>
-    </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="grid">
-      <article class="card">
-        <img src="images/DIA.webp" alt="Web Scraper project cover">
-        <div class="card-content">
-          <h3>Web Scraper</h3>
-          <p>Tool to collect and analyze supermarket product data (prices, discounts, trends).</p>
-          <a class="btn-primary" href="Proyect_1.html">View Case Study</a>
+  <!-- Layout principal: izquierda (foto + what I do) / derecha (proyectos con separador) -->
+  <main class="main-wrap">
+    <div class="layout">
+      <!-- Izquierda -->
+      <aside class="left-col" aria-label="Profile and What I do">
+        <div class="hero-photo">
+          <img src="images/Selfie.jpg" alt="Lautaro Pereira Basile portrait">
         </div>
-      </article>
-      <article class="card">
-        <img src="images/DV Dia.webp" alt="Data Visualization project cover">
-        <div class="card-content">
-          <h3>Data Visualization</h3>
-          <p>Interactive and static charts to explore a retail dataset and surface insights.</p>
-          <a class="btn-primary" href="Proyect_2.html">View Case Study</a>
+        <section class="hero-whatido" aria-label="What I do">
+          <h2>WHAT I DO</h2>
+          <p>
+            I turn complex data into clear, actionable solutions. With experience in consulting and fintech,
+            I specialize in extracting, modeling and visualizing information to uncover insights that improve
+            decision-making and operational efficiency. My focus is on building robust pipelines, automating
+            reports and designing intuitive dashboards that reveal trends, risks and opportunities—so stakeholders
+            can move faster with confidence.
+          </p>
+          <p>
+            Day to day, that means writing efficient queries, optimizing datasets, and communicating findings
+            with crisp visuals tailored to business questions. I’m comfortable owning the full path from raw data
+            to decision: from BigQuery and Python transformations to KPI design and delivery in tools like Power BI,
+            Tableau or Looker Studio.
+          </p>
+          <div class="skills" aria-label="Core skills">
+            <span class="chip">Python</span>
+            <span class="chip">SQL / BigQuery</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">Tableau</span>
+            <span class="chip">Looker Studio</span>
+            <span class="chip">Excel</span>
+            <span class="chip">Git &amp; GitHub</span>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Derecha (Proyectos) -->
+      <section class="right-col" aria-label="Projects">
+        <section id="projects" class="section">
+          <h2>Projects</h2>
+          <div class="grid">
+            <article class="card">
+              <img src="images/DIA.webp" alt="Web Scraper project cover">
+              <div class="card-content">
+                <h3>Web Scraper</h3>
+                <p>Tool to collect and analyze supermarket product data (prices, discounts, trends).</p>
+                <a class="btn-primary" href="Proyect_1.html">View Case Study</a>
+              </div>
+            </article>
+            <article class="card">
+              <img src="images/DV Dia.webp" alt="Data Visualization project cover">
+              <div class="card-content">
+                <h3>Data Visualization</h3>
+                <p>Interactive and static charts to explore a retail dataset and surface insights.</p>
+                <a class="btn-primary" href="Proyect_2.html">View Case Study</a>
+              </div>
+            </article>
+            <article class="card">
+              <img src="images/Uala.webp" alt="Fintech dashboard project cover">
+              <div class="card-content">
+                <h3>Dashboards</h3>
+                <p>Fintech Credit Area KPI dashboard for monitoring conversion, cohorts and risk.</p>
+                <a class="btn-primary" href="Proyect_3.html">View Case Study</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- CTA opcional bajo proyectos (podés quitarlo si no lo usás) -->
+        <div class="cta">
+          <a class="btn-primary" href="#contact">Get in touch</a>
+          <a class="btn-outline" href="#projects">More work</a>
         </div>
-      </article>
-      <article class="card">
-        <img src="images/Uala.webp" alt="Fintech dashboard project cover">
-        <div class="card-content">
-          <h3>Dashboards</h3>
-          <p>Fintech Credit Area KPI dashboard for monitoring conversion, cohorts and risk.</p>
-          <a class="btn-primary" href="Proyect_3.html">View Case Study</a>
-        </div>
-      </article>
+      </section>
     </div>
-  </section>
+  </main>
 
   <!-- Contact -->
-  <section id="contact" class="section contact">
-    <h2>Get in touch</h2>
-    <p>Let’s connect! Whether it’s a question, collaboration, or just a hello.</p>
-    <form method="post" action="https://formspree.io/f/mbljegpq">
-      <input type="text" name="name" placeholder="Name" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <textarea name="message" rows="5" placeholder="Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-    <div class="social">
-      <a href="mailto:lautaropereirabasile@gmail.com">Email</a>
-      <a href="https://github.com/lautaropereirab" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/lautaropereirab/" target="_blank" rel="noopener">LinkedIn</a>
+  <section id="contact" class="contact-wrap">
+    <div class="contact section contact">
+      <h2>Get in touch</h2>
+      <p>Let’s connect! Whether it’s a question, collaboration, or just a hello.</p>
+      <form method="post" action="https://formspree.io/f/mbljegpq">
+        <input type="text" name="name" placeholder="Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="message" rows="5" placeholder="Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="social">
+        <a href="mailto:lautaropereirabasile@gmail.com">Email</a>
+        <a href="https://github.com/lautaropereirab" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/lautaropereirab/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </section>
 
