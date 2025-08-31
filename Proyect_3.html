@@ -3,62 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboards – LPB Portfolio</title>
+  <title>Credit Insights Dashboard – LPB Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/lpb_icon.png">
   <style>
-    body{margin:0;font-family:'Inter',sans-serif;background:#F9FAFB;color:#111827}
-    header{position:sticky;top:0;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;box-shadow:0 2px 8px rgba(0,0,0,.05);z-index:1000}
-    header .logo{font-weight:800;font-size:1.2rem;color:#2563EB;text-decoration:none}
+    :root{
+      --bg:#F9FAFB;
+      --fg:#111827;
+      --card:#FFFFFF;
+      --primary:#2563EB;
+      --primary-600:#1e4fcc;
+      --shadow:0 4px 16px rgba(0,0,0,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg)}
+    a{text-decoration:none;color:inherit}
+
+    /* Navbar (copied from index) */
+    header{
+      position:sticky;top:0;background:#fff;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 2rem;box-shadow:0 2px 8px rgba(0,0,0,.05);z-index:1000
+    }
+    .logo img{height:100px;width:auto;display:block;}
     nav ul{display:flex;list-style:none;margin:0;padding:0;gap:1.5rem}
-    nav a{text-decoration:none;color:#111827;font-weight:600}
-    nav a:hover{color:#2563EB}
-    .project{max-width:900px;margin:3rem auto;padding:0 2rem}
+    nav a{font-weight:600}
+    nav a:hover{color:var(--primary)}
+    .menu-toggle{
+      display:none;background:transparent;border:0;padding:.5rem;border-radius:10px;color:var(--fg);cursor:pointer;
+    }
+    .menu-toggle:focus-visible{outline:2px solid var(--primary);}
+
+    /* Page */
+    .project{max-width:1000px;margin:3rem auto;padding:0 2rem}
     .project h1{font-size:2.5rem;font-weight:800;margin-bottom:1rem;color:#111827}
-    .project img{width:100%;border-radius:12px;margin:2rem 0;object-fit:cover}
-    .project p{margin-bottom:1rem;line-height:1.6}
-    .btn-back{display:inline-block;margin-top:2rem;padding:.75rem 1.5rem;background:#2563EB;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;transition:background .2s}
-    .btn-back:hover{background:#1e4fcc}
+    .project img{width:100%;border-radius:12px;margin:2rem 0;object-fit:cover;box-shadow:var(--shadow)}
+    .project p{margin-bottom:1rem;line-height:1.7}
+    .project h2{font-size:1.25rem;margin-top:2rem;margin-bottom:.5rem}
+    .project ul{margin:0 0 1rem 1.25rem;line-height:1.7}
+    .btn-back{display:inline-block;margin-top:2rem;padding:.75rem 1.5rem;background:var(--primary);color:#fff;border-radius:10px;font-weight:600;transition:background .2s}
+    .btn-back:hover{background:var(--primary-600)}
+
+    /* Responsive nav (copied from index) */
+    @media (max-width:920px){
+      .menu-toggle{display:inline-flex;align-items:center;justify-content:center;}
+      nav{
+        position:absolute;top:100%;right:0;left:0;background:#fff;
+        box-shadow:0 8px 20px rgba(0,0,0,.08);
+        border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius);
+        transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;
+      }
+      nav ul{flex-direction:column;gap:.75rem;padding:1rem 1.25rem;}
+      header.nav-open nav{opacity:1;transform:translateY(0);pointer-events:auto;}
+    }
+
+    /* Looker Studio responsive wrapper */
+    .embed-card{
+      background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:1rem;margin:2rem 0;
+    }
+    .ratio{
+      position:relative;width:100%;padding-bottom:62.5%; /* 16:10 look, a bit taller than 16:9 */
+      overflow:hidden;border-radius:12px;
+    }
+    .ratio iframe{
+      position:absolute;inset:0;width:100%;height:100%;border:0;
+    }
+    .embed-actions{
+      display:flex;justify-content:flex-end;gap:.75rem;margin-top:.75rem;
+    }
+    .btn-outline{
+      border:1px solid #D1D5DB;color:var(--fg);background:#fff;
+      padding:.5rem .9rem;border-radius:10px;font-weight:600;
+    }
+    .btn-outline:hover{border-color:#9CA3AF}
     footer{text-align:center;padding:2rem;background:#fff;margin-top:4rem}
   </style>
 </head>
 <body>
+  <!-- Navbar (from index) -->
   <header>
-    <a href="index.html" class="logo">LPB</a>
-    <nav>
+    <a href="index.html" class="logo" aria-label="LPB Home">
+      <img src="images/L (500 x 300 px).png" alt="Logo LPB">
+    </a>
+
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-nav">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <nav id="primary-nav">
       <ul>
         <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="https://github.com/lautaropereirab" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/lautaropereirab/" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="project">
-    <h1>Dashboards (Fintech Credit KPIs)</h1>
+  <main class="project">
+    <h1>Credit Insights Dashboard</h1>
     <img src="images/pic03.svg" alt="Fintech Credit Area KPI Dashboard">
-    <p>Design and build of KPI dashboards for the Credit area in a fintech context, focusing on clarity, decision enablement, and business impact.</p>
 
-    <p><strong>Key Features:</strong></p>
-    <p>• Interactive charts for operational monitoring<br>
-       • Custom visuals aligned to business questions<br>
-       • Views by product, cohort, conversion & performance</p>
+    <h2>Context</h2>
+    <p>As part of a case study on credit products in the fintech industry, I designed and implemented a dashboard to analyze user eligibility, credit behavior, and financing adoption. The dashboard simulates how a fintech like Ualá could track credit KPIs, identify trends, and make data-driven decisions.</p>
 
-    <p><strong>Technologies Used:</strong><br>
-       Python, Pandas, NumPy, Plotly / Looker Studio (según el caso)</p>
+    <h2>Objective</h2>
+    <ul>
+      <li><strong>Highlights key credit KPIs across the user lifecycle.</strong></li>
+      <li>Provides clear, actionable views for stakeholders.</li>
+      <li>Demonstrates the integration of <strong>BigQuery</strong> and <strong>Looker Studio</strong> within <strong>GCP</strong>.</li>
+    </ul>
 
-    <p><strong>Use Cases:</strong><br>
-       • Track conversion & funnel performance<br>
-       • Identify drop-offs & portfolio health drivers<br>
-       • Support data-informed strategy decisions</p>
+    <h2>Process</h2>
+    <h3>1) Data preparation</h3>
+    <ul>
+      <li>Modeled and transformed datasets with <strong>BigQuery SQL</strong>.</li>
+      <li>Normalized transactions, eligibility, and financing data into unified tables.</li>
+      <li>Created reusable queries to feed consistent metrics across the dashboard.</li>
+    </ul>
+
+    <h3>2) Dashboard design</h3>
+    <p>Organized into three key tabs:</p>
+    <ul>
+      <li><strong>Transactional Behavior →</strong> Analysis of user spending patterns and credit usage.</li>
+      <li><strong>Eligible Users →</strong> Trends in user eligibility and approval rates.</li>
+      <li><strong>Financing →</strong> Insights into credit card financing adoption and repayment.</li>
+    </ul>
+
+    <!-- Live, responsive Looker Studio embed -->
+    <h2>Live Dashboard (Looker Studio)</h2>
+    <div class="embed-card" role="region" aria-label="Embedded Looker Studio report">
+      <div class="ratio">
+        <!-- Replace the URL below with your Looker Studio embed URL -->
+        <iframe
+          src="https://lookerstudio.google.com/embed/reporting/95a8098a-94a7-42c9-8bb3-1d0ba3d0b18f/page/p_waqphi9gtd&rm=minimal"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Credit Insights Dashboard – Looker Studio">
+        </iframe>
+      </div>
+      <div class="embed-actions">
+        <!-- Optional: open in new tab -->
+        <a class="btn-outline" href="YOUR_LOOKER_STUDIO_EMBED_URL" target="_blank" rel="noopener">Open in new tab</a>
+      </div>
+    </div>
+
+    <h2>Results</h2>
+    <ul>
+      <li>Fast monitoring of eligibility trends and approval metrics.</li>
+      <li>Detailed cohort analysis of user behavior and credit adoption.</li>
+      <li>Clear visualization of financing performance for business decisions.</li>
+    </ul>
+
+    <h2>Skills</h2>
+    <ul>
+      <li>SQL / BigQuery</li>
+      <li>Google Cloud Platform</li>
+      <li>Looker Studio</li>
+      <li>Data Visualization &amp; Storytelling</li>
+      <li>Product Thinking</li>
+    </ul>
 
     <p><a href="https://github.com/lautaropereirab/sales_viz.git" target="_blank" rel="noopener">Related repo on GitHub</a></p>
 
     <a class="btn-back" href="index.html">← Back to Portfolio</a>
-  </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Lautaro Pereira Basile. All rights reserved.</p>
   </footer>
+
+  <!-- JS (same behavior as index) -->
+  <script>
+    (function () {
+      const header = document.querySelector('header');
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('primary-nav');
+
+      function setOpen(isOpen) {
+        header.classList.toggle('nav-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const isOpen = !header.classList.contains('nav-open');
+          setOpen(isOpen);
+        });
+      }
+
+      if (nav) {
+        nav.addEventListener('click', (e) => {
+          if (e.target.tagName === 'A') setOpen(false);
+        });
+      }
+
+      const mq = window.matchMedia('(min-width: 921px)');
+      mq.addEventListener('change', () => setOpen(false));
+    })();
+  </script>
 </body>
 </html>
