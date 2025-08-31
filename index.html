@@ -200,6 +200,55 @@ button[type="submit"]{
   .panel{ height: auto; }
 }
 
+/* Paneles: mitad y mitad, misma altura visual */
+.panels{
+  display:grid;
+  grid-template-columns: 1fr 1fr;  /* izquierda = derecha */
+  gap: 2rem;
+  align-items: stretch;            /* estira ambas cajas */
+}
+
+/* cada panel se comporta como columna flexible */
+.panel{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+/* IZQUIERDA: que la columna use todo su ancho,
+   pero SIN forzar ancho de la foto ni del texto */
+.panel-left{
+  display:flex;
+}
+.panel-left .left-stack{
+  margin-left:auto;
+  margin-right:auto;   /* centra el bloque dentro de la columna */
+  display:flex;
+  flex-direction:column;
+  gap:1.25rem;
+  /* opcional: limita cuánto se expande el contenido izq sin tocar la selfie */
+  max-width: 720px;    /* ajustá si querés; no cambia el tamaño actual de la foto */
+}
+
+/* Selfie: mantené el tamaño que te gusta (no toco tu width/height actuales).
+   Si querés un recorte vertical prolijo, podés dejar esto: */
+.photo img{
+  display:block;
+  width:auto;          /* respeta tu tamaño actual */
+  height:auto;
+  object-fit:cover;
+  /* aspect-ratio: 3 / 4;  <-- activalo si querés relación fija */
+}
+
+/* Opcional: que ambos paneles terminen alineados abajo incluso con distinto contenido */
+.panel-left .left-stack,
+.panel-right { flex:1; }
+
+/* Responsive */
+@media (max-width: 980px){
+  .panels{ grid-template-columns:1fr; }
+  .panel{ height:auto; }
+}
   </style>
 </head>
 <body>
