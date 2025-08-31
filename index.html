@@ -150,6 +150,56 @@
     nav ul{flex-direction:column;gap:.75rem;padding:1rem 1.25rem;}
     header.nav-open nav{opacity:1;transform:translateY(0);pointer-events:auto;}
   }
+
+  /* 1) Más ancho útil y menos aire interno */
+:root{
+  --wrap: 1320px;         /* antes ~1200px */
+}
+.main-wrap{ max-width: var(--wrap); padding: 2rem 1.5rem 0; } /* un poco menos de padding */
+.panels{ gap: 1.5rem; }   /* separador más compacto */
+
+/* 2) Paneles de igual alto (mismo “piso” visual) */
+.panels{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;   /* los ítems estiran a la pista */
+  grid-auto-rows: 1fr;    /* asegura alto homogéneo en la fila */
+}
+.panel{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.panel-left .left-stack{ flex: 1; }   /* el contenido ocupa todo el alto disponible */
+.panel-right .grid{ margin-top: 0; }  /* evita aire extra arriba si quedó alguno */
+
+/* 3) “Get in touch” centrado y alineado con el ancho */
+.section{ max-width: var(--wrap); margin: 0 auto; } /* ya centra el bloque */
+#contact.section{ padding-top: 2rem; padding-bottom: 2.5rem; }
+#contact .contact{ margin-left: auto; margin-right: auto; } /* centra la tarjeta */
+
+/* 4) Centrar texto de TODOS los botones (CTA y cards) */
+.btn-primary,
+.btn-outline,
+button[type="submit"]{
+  justify-content: center;  /* centra el contenido en el botón */
+  text-align: center;
+}
+
+/* Imagen con buen recorte manteniendo el nuevo layout */
+.photo img{
+  aspect-ratio: 4 / 5;     /* podés cambiar a 3/4 si querés un poco más “panorámica” */
+  object-fit: cover;
+  width: 100%;
+  max-height: 560px;       /* subo leve el límite para aprovechar más alto */
+}
+
+/* Responsive: mantiene la mejora sin romper mobile */
+@media (max-width: 980px){
+  .panels{ grid-template-columns: 1fr; }
+  .panel{ height: auto; }
+}
+
   </style>
 </head>
 <body>
