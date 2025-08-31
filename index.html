@@ -270,6 +270,17 @@ button[type="submit"]{
 /* Opcional: ganá un toque más de ancho útil visual en cada panel */
 .panel{ padding: 1.25rem; 
 }               /* antes 1.75rem */
+
+/* Selfie más chica, mantiene relación */
+.photo img {
+  width: 100%;
+  max-width: 420px;   /* reducís el tamaño general */
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;     /* la centra dentro de su columna */
+}
   </style>
 </head>
 <body>
