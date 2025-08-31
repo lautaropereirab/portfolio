@@ -249,6 +249,27 @@ button[type="submit"]{
   .panels{ grid-template-columns:1fr; }
   .panel{ height:auto; }
 }
+
+/* 0) Sacar el margen por defecto del <figure> para que no quede "blanco" */
+.photo{ margin: 0; }
+
+/* 1) La foto debe ocupar el ancho de su contenedor (pisa la regla conflictiva de width:auto) */
+.photo img{
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+/* 2) Paneles más anchos, como marcaste en negro */
+:root{ --wrap: 1440px; }                  /* antes 1200/1320 */
+.main-wrap{ max-width: min(96vw, 1440px); /* llena más de la pantalla */
+            padding: 1.5rem 1rem 0; }     /* menos padding lateral */
+
+/* Opcional: ganá un toque más de ancho útil visual en cada panel */
+.panel{ padding: 1.25rem; 
+}               /* antes 1.75rem */
   </style>
 </head>
 <body>
