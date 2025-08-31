@@ -8,14 +8,15 @@
   <link rel="icon" type="image/png" href="images/lpb_icon.png">
   <style>
   :root{
-    --bg:#F9FAFB;
+    --bg:#F5F7FB;         /* un toque más suave */
     --fg:#111827;
     --card:#FFFFFF;
     --primary:#2563EB;
     --primary-600:#1e4fcc;
-    --shadow:0 4px 16px rgba(0,0,0,.08);
-    --radius:16px;
+    --shadow:0 6px 22px rgba(0,0,0,.08);
+    --radius:18px;
     --line:#E5E7EB;
+    --wrap:1200px;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg)}
@@ -31,80 +32,99 @@
   nav ul{display:flex;list-style:none;margin:0;padding:0;gap:1.5rem}
   nav a{font-weight:600}
   nav a:hover{color:var(--primary)}
-
-  /* Botón hamburguesa */
   .menu-toggle{display:none;background:transparent;border:0;padding:.5rem;border-radius:10px;color:var(--fg);cursor:pointer;}
   .menu-toggle:focus-visible{outline:2px solid var(--primary);}
 
-  /* HERO HEADER (solo el título) */
-  .hero{max-width:1200px;margin:0 auto;padding:3.5rem 2rem 1.5rem;}
-  .hero-header{text-align:center;margin-bottom:0.5rem;}
-  .hero-header h1{font-size:3rem;line-height:1.1;margin:.25rem 0;font-weight:800;color:var(--fg);}
-
-  /* LAYOUT PRINCIPAL: izquierda (foto + what I do) / derecha (proyectos) */
-  .main-wrap{max-width:1200px;margin:0 auto;padding:0 2rem;}
-  .layout{
+  /* ====== LAYOUT PRINCIPAL: 2 paneles con bordes redondeados ====== */
+  .main-wrap{max-width:var(--wrap);margin:0 auto;padding:2.25rem 2rem 0;}
+  .panels{
     display:grid;
-    grid-template-columns: 350px minmax(0,1fr);
+    grid-template-columns: 1fr 1fr;
     gap:2rem;
     align-items:start;
   }
+  @media (max-width: 980px){
+    .panels{grid-template-columns:1fr;}
+  }
+  .panel{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:1.75rem;
+  }
+  .panel-header{
+    text-align:center;
+    margin: .25rem 0 1.25rem;
+  }
+  .panel-header h1,
+  .panel-header h2{
+    margin:0;
+    font-weight:800;
+    line-height:1.12;
+  }
+  .panel-left .panel-header h1{ font-size:2.4rem; }
+  .panel-right .panel-header h2{ font-size:2rem; }
 
-  /* Columna izquierda */
-  .left-col{display:flex;flex-direction:column;gap:1.25rem;position:relative;}
-  .hero-photo{border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
-  .hero-photo img{display:block;width:100%;height:auto;object-fit:cover;}
-  .hero-whatido{
-    background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
-    padding:1.25rem;display:flex;flex-direction:column;
+  /* ====== IZQUIERDA: foto + what I do ====== */
+  .left-stack{display:flex;flex-direction:column;gap:1.25rem;}
+  .photo{
+    border-radius:calc(var(--radius) - 4px);
+    overflow:hidden;
+    box-shadow:var(--shadow);
   }
-  .hero-whatido h2{
-    margin:0 0 .5rem;font-size:1.125rem;letter-spacing:.02em;color:#374151;
-    font-weight:700;text-transform:uppercase;text-align:center;
+  /* Relación de aspecto mejor: 4:5 (vertical elegante). Fallback con altura fija */
+  .photo img{
+    width:100%;
+    display:block;
+    object-fit:cover;
+    aspect-ratio: 4 / 5;
+    /* fallback si el navegador no soporta aspect-ratio */
+    max-height: 540px;
   }
-  .hero-whatido p{line-height:1.75;margin:0 0 .75rem;font-size:1.02rem;color:#1F2937;}
-  .skills{margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.5rem}
+
+  .whatido{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:calc(var(--radius) - 4px);
+    padding:1.25rem 1.25rem 1rem;
+  }
+  .whatido h3{
+    margin:.25rem 0 .5rem;
+    font-size:1rem; letter-spacing:.06em;
+    text-transform:uppercase; color:#374151; text-align:center;
+  }
+  .whatido p{margin:0 0 .75rem; line-height:1.68; font-size:1.02rem; color:#1F2937;}
+  .skills{margin-top:.5rem; display:flex; flex-wrap:wrap; gap:.5rem;}
   .chip{padding:.4rem .65rem;border-radius:999px;background:#F3F4F6;border:1px solid #E5E7EB;font-size:.9rem;color:#374151}
 
-  /* Columna derecha + separador */
-  .right-col{
-    position:relative;
-    padding-left:2rem;
-    border-left:1px solid var(--line);
+  /* ====== DERECHA: Projects ====== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
   }
-  /* Opcional: línea más suave en pantallas retina */
-  .right-col:before{
-    content:"";
-    position:absolute;left:0;top:0;bottom:0;width:1px;
-    background:linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.02), rgba(0,0,0,0.05));
-    pointer-events:none;
+  .card{
+    background:#fff;border:1px solid var(--line);
+    border-radius:calc(var(--radius) - 4px);
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    overflow:hidden; display:flex; flex-direction:column;
   }
-
-  /* CTAs debajo del header (opcionales) */
-  .cta{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin:1rem 0 2rem;}
-  .btn-primary,.btn-outline{padding:.75rem 1.25rem;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;gap:.5rem}
+  .card img{width:100%;height:200px;object-fit:cover}
+  .card-content{padding:1.1rem;display:flex;flex-direction:column;gap:.5rem;flex-grow:1}
+  .card-content h3{margin:.25rem 0 .25rem;font-weight:700}
+  .card-content p{margin:0 0 .5rem;flex-grow:1;color:#374151}
+  .btn-primary,.btn-outline{
+    padding:.72rem 1.15rem;border-radius:10px;font-weight:600;display:inline-flex;align-items:center;gap:.5rem
+  }
   .btn-primary{background:var(--primary);color:#fff}
   .btn-primary:hover{background:var(--primary-600)}
   .btn-outline{border:1px solid #D1D5DB;color:var(--fg);background:#fff}
   .btn-outline:hover{border-color:#9CA3AF}
 
-  /* Secciones */
-  .section{padding:0;margin:0 0 3rem}
-  .section h2{font-size:2rem;font-weight:800;margin:0 0 1.25rem}
-
-  /* Projects grid */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
-  .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
-  .card img{width:100%;height:200px;object-fit:cover}
-  .card-content{padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;flex-grow:1}
-  .card-content h3{margin:.25rem 0 .25rem;font-weight:700}
-  .card-content p{margin:0 0 .5rem;flex-grow:1;color:#374151}
-  .card .btn-primary{align-self:flex-start}
-
-  /* Contact */
-  .contact-wrap{max-width:1200px;margin:0 auto;padding:0 2rem;}
-  .contact{max-width:800px;margin:0 auto 2.5rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem;}
-  .contact h2{text-align:center;margin-top:0;margin-bottom:1rem;font-size:2rem}
+  /* ====== CONTACT ====== */
+  .section{padding:2.25rem 2rem;max-width:var(--wrap);margin:0 auto}
+  .contact{max-width:800px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem;border:1px solid var(--line);}
+  .contact h2{text-align:center;margin:0 0 1rem;font-size:2rem}
   .contact p{text-align:center;margin:0 0 1rem;}
   form{display:grid;gap:1rem;margin-top:1.25rem}
   input,textarea{padding:.8rem;border-radius:10px;border:1px solid #D1D5DB;font-family:inherit;font-size:1rem;background:#fff}
@@ -114,121 +134,22 @@
   .social a{color:var(--primary);font-weight:600}
 
   /* Footer */
-  footer{text-align:center;padding:2rem;background:#fff;margin-top:1rem}
+  footer{text-align:center;padding:2rem;background:#fff;margin-top:2rem;border-top:1px solid var(--line);}
 
-  /* Responsive nav y layout */
+  /* Responsive nav */
   @media (max-width:920px){
     .menu-toggle{display:inline-flex;align-items:center;justify-content:center;}
     nav{
-      position:absolute;top:100%;right:0;left:0;background:#fff;
+      position:absolute; top:100%; right:0; left:0; background:#fff;
       box-shadow:0 8px 20px rgba(0,0,0,.08);
-      border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius);
-      transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;
+      border-bottom-left-radius:var(--radius);
+      border-bottom-right-radius:var(--radius);
+      transform:translateY(-8px); opacity:0; pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
     }
     nav ul{flex-direction:column;gap:.75rem;padding:1rem 1.25rem;}
     header.nav-open nav{opacity:1;transform:translateY(0);pointer-events:auto;}
-
-    .layout{grid-template-columns:1fr;gap:1.75rem;}
-    .right-col{border-left:0;padding-left:0;}
-    .right-col:before{display:none;}
   }
-
-  /* ===== SPLIT LAYOUT (foto+what i do IZQ / projects DER) ===== */
-.split {
-  position: relative;
-  width: 100%;
-}
-
-/* divisor centrado en pantalla (solo desktop) */
-@media (min-width: 1024px){
-  .center-divider{
-    position: fixed;          /* se queda clavado mientras scrolleás */
-    left: 50vw;               /* exactamente al centro del viewport */
-    top: 88px;                /* debajo del header sticky (ajustá si cambia) */
-    bottom: 0;
-    width: 1.5px;
-    background: #E5E7EB;
-    z-index: 0;
-  }
-}
-
-/* grilla 2 columnas: 50% pantalla a la izquierda, resto a la derecha */
-@media (min-width: 1024px){
-  .split-grid{
-    display: grid;
-    grid-template-columns: 50vw 1fr;
-    align-items: start;
-  }
-}
-
-/* contenedores internos con padding consistente */
-.split-left,
-.split-right{
-  padding: 2rem;
-}
-
-/* que el contenido pase por delante del divisor */
-.split-left > *, .split-right > * { position: relative; z-index: 1; }
-
-/* izquierda: columna vertical (foto arriba, what i do debajo) */
-.left-stack{
-  max-width: 720px;
-  margin: 0 auto 0  max(2rem, calc((50vw - 720px) / 2)); /* centra/aprovecha el ancho izq */
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-/* foto compacta y prolija */
-.left-photo{
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-.left-photo img{
-  display: block;
-  width: 100%;
-  max-height: 420px;          /* compacta la altura */
-  object-fit: cover;
-}
-
-/* caja WHAT I DO pegada a la foto (sin “salto”) */
-.left-whatido{
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
-}
-.left-whatido h2{
-  margin: 0 0 .5rem;
-  font-size: 1rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: #374151;
-  text-align: center;
-}
-.left-whatido p{
-  margin: 0 0 .75rem;
-  line-height: 1.65;
-  font-size: 1rem;
-  color: #1F2937;
-}
-.left-whatido .skills{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
-.left-whatido .chip{ padding:.4rem .65rem; border-radius:999px; background:#F3F4F6; border:1px solid #E5E7EB; font-size:.9rem; color:#374151; }
-
-/* derecha: alineamos Projects y subimos un toque el título */
-.split-right .section{ padding-top: 1rem; }
-.split-right .section h2{ text-align: left; margin-left: .125rem; }
-
-/* mobile: se apila todo y ocultamos el divisor */
-@media (max-width: 1023px){
-  .center-divider{ display:none; }
-  .split-grid{ display:block; }
-  .left-stack{ margin: 0; }
-  .left-photo img{ max-height: 320px; }
-}
-
-  
   </style>
 </head>
 <body>
@@ -254,54 +175,50 @@
     </nav>
   </header>
 
-  <!-- Título -->
-  <section class="split" id="top">
-  <!-- divisor centrado fijo -->
-  <span class="center-divider" aria-hidden="true"></span>
+  <!-- MAIN: 2 paneles -->
+  <main class="main-wrap">
+    <div class="panels">
+      <!-- Panel IZQUIERDO -->
+      <section class="panel panel-left" aria-label="Profile and What I do">
+        <div class="panel-header">
+          <h1>Data Analyst &amp; Economist</h1>
+        </div>
+        <div class="left-stack">
+          <figure class="photo">
+            <img src="images/Selfie.jpg" alt="Lautaro Pereira Basile portrait">
+          </figure>
 
-  <div class="split-grid">
-    <!-- IZQUIERDA: foto + what i do (apilados) -->
-    <div class="split-left">
-      <div class="left-stack">
-        <header class="hero-header" style="margin-bottom:.5rem;">
-          <h1 style="font-size:2.6rem;line-height:1.15;margin:.25rem 0;font-weight:800;color:var(--fg);">
-            Data Analyst &amp; Economist
-          </h1>
-        </header>
+          <aside class="whatido">
+            <h3>WHAT I DO</h3>
+            <p>
+              I turn complex data into clear, actionable solutions. With experience in consulting and fintech,
+              I specialize in extracting, modeling and visualizing information to uncover insights that improve
+              decision-making and operational efficiency.
+            </p>
+            <p>
+              From BigQuery &amp; Python transformations to KPI design and delivery (Power BI / Tableau / Looker),
+              I own the path from raw data to decision—automation, dashboards and crisp communication.
+            </p>
+            <div class="skills" aria-label="Core skills">
+              <span class="chip">Python</span>
+              <span class="chip">SQL / BigQuery</span>
+              <span class="chip">Power BI</span>
+              <span class="chip">Tableau</span>
+              <span class="chip">Looker Studio</span>
+              <span class="chip">Excel</span>
+              <span class="chip">Git &amp; GitHub</span>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-        <div class="left-photo">
-          <img src="images/Selfie.jpg" alt="Lautaro Pereira Basile portrait">
+      <!-- Panel DERECHO -->
+      <section class="panel panel-right" aria-label="Projects">
+        <div class="panel-header">
+          <h2>Projects</h2>
         </div>
 
-        <aside class="left-whatido" aria-label="What I do">
-          <h2>WHAT I DO</h2>
-          <p>
-            I turn complex data into clear, actionable solutions. With experience in consulting and fintech,
-            I specialize in extracting, modeling and visualizing information to uncover insights that improve
-            decision-making and operational efficiency.
-          </p>
-          <p>
-            From BigQuery &amp; Python transformations to KPI design and delivery (Power BI / Tableau / Looker),
-            I own the path from raw data to decision—automation, dashboards and crisp communication.
-          </p>
-          <div class="skills">
-            <span class="chip">Python</span>
-            <span class="chip">SQL / BigQuery</span>
-            <span class="chip">Power BI</span>
-            <span class="chip">Tableau</span>
-            <span class="chip">Looker Studio</span>
-            <span class="chip">Excel</span>
-            <span class="chip">Git &amp; GitHub</span>
-          </div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- DERECHA: Projects (queda a la derecha del divisor) -->
-    <div class="split-right">
-      <section id="projects" class="section">
-        <h2>Projects</h2>
-        <div class="grid">
+        <div id="projects" class="grid">
           <article class="card">
             <img src="images/DIA.webp" alt="Web Scraper project cover">
             <div class="card-content">
@@ -331,22 +248,11 @@
         </div>
       </section>
     </div>
-  </div>
-</section>
-
-
-        <!-- CTA opcional bajo proyectos (podés quitarlo si no lo usás) -->
-        <div class="cta">
-          <a class="btn-primary" href="#contact">Get in touch</a>
-          <a class="btn-outline" href="#projects">More work</a>
-        </div>
-      </section>
-    </div>
   </main>
 
   <!-- Contact -->
-  <section id="contact" class="contact-wrap">
-    <div class="contact section contact">
+  <section id="contact" class="section">
+    <div class="contact">
       <h2>Get in touch</h2>
       <p>Let’s connect! Whether it’s a question, collaboration, or just a hello.</p>
       <form method="post" action="https://formspree.io/f/mbljegpq">
